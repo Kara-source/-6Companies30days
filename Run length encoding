@@ -1,0 +1,56 @@
+import java.util.*;
+ 
+class RLEncoding
+{
+   public static void main(String[] args) 
+   {
+ 
+      Scanner sc = new Scanner(System.in);
+    
+	  int T = sc.nextInt();
+	  sc.nextLine();
+	  while(T>0)
+	  {
+		  
+		String str = sc.nextLine();
+		
+		GfG g = new GfG();
+		System.out.println(g.encode(str));
+		
+      
+        T--;
+	  }
+   }
+}
+
+// } Driver Code Ends
+
+
+class GfG
+ {
+	String encode(String str)
+	{
+          //Your code here
+          List<Integer> list=new ArrayList<Integer>();
+          StringBuffer sb=new StringBuffer(str);
+          list.add(1);
+          int j=0;
+          for(int i=1;i<str.length();i++){
+              if(str.charAt(i)!=str.charAt(i-1)){
+                  list.add(1);
+                  j++;
+              }
+              else{
+                  list.set(j,list.get(j)+1);
+                  sb.delete(j+1,j+2);
+              }
+          }
+          j=0;
+          for(int i=1;i<list.size()*2;i+=2){
+              sb.insert(i,list.get(j));
+              j++;
+          }
+          return sb.toString();
+	}
+	
+ }
